@@ -4,7 +4,7 @@
 ## 個人開発
 
 ### 抹茶と神社。(京都の抹茶スイーツ店と神社仏閣を巡ることができるサービス)
-https://www.matcha-to-jinja.com/
+[https://greentea-temple.herokuapp.com/](https://greentea-temple.herokuapp.com/)
 
 ## GitHubスタッツ
  
@@ -24,6 +24,10 @@ https://www.matcha-to-jinja.com/
 [![My Qiita posts](https://qiita-badge.apiapi.app/s/hiiragi_en17/posts.svg)](http://qiita.com/hiiragi_en17)
 [![My Qiita contributions](https://qiita-badge.apiapi.app/s/hiiragi_en17/contributions.svg)](http://qiita.com/hiiragi_en17)
 [![My Qiita followers](https://qiita-badge.apiapi.app/s/hiiragi_en17/followers.svg)](http://qiita.com/hiiragi_en17)
+
+### Zenn
+
+https://zenn.dev/hiiragi
 
 ### note
 
