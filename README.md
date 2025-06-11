@@ -1,5 +1,3 @@
-![GitHub followers](https://img.shields.io/github/followers/hiiragi17?style=social)
-
 <div align="center">
   <img src="https://user-images.githubusercontent.com/74038190/212284100-561aa473-3905-4a80-b561-0d28506553ee.gif" width="900">
 </div>
@@ -36,6 +34,7 @@
 </tr>
 </table>
 
+![GitHub followers](https://img.shields.io/github/followers/hiiragi17?style=social)
 [![Twitter: hiiragi_en17](https://img.shields.io/twitter/follow/hiiragi_en17?style=social)](https://twitter.com/hiiragi_en17)
 
 ## 個人開発
@@ -43,6 +42,10 @@
 ### 抹茶と神社。(京都の抹茶スイーツ店と神社仏閣を巡ることができるサービス)
 
 [https://greentea-temple.herokuapp.com/](https://greentea-temple.herokuapp.com/)
+
+### ○○なので、リモートします。(荒唐無稽なリモート理由を診断してくれるサービス)
+
+https://remote-diagnosis-app.vercel.app/
 
 ## 📊 **GitHub Analytics**
 
@@ -66,9 +69,8 @@
 
 ## その他記事
 ### Qitta
-[![My Qiita posts](https://qiita-badge.apiapi.app/s/hiiragi_en17/posts.svg)](http://qiita.com/hiiragi_en17)
-[![My Qiita contributions](https://qiita-badge.apiapi.app/s/hiiragi_en17/contributions.svg)](http://qiita.com/hiiragi_en17)
-[![My Qiita followers](https://qiita-badge.apiapi.app/s/hiiragi_en17/followers.svg)](http://qiita.com/hiiragi_en17)
+
+http://qiita.com/hiiragi_en17
 
 ### Zenn
 
