@@ -63,12 +63,12 @@ https://remote-diagnosis-app.vercel.app/
 </div>
 
 <div align="center">
-  <img alt="Top Langs" height="150px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=hiiragi17&layout=compact&show_icons=true&theme=tokyonight" />
-  <img alt="github stats" height="150px" src="https://github-readme-stats.vercel.app/api?username=hiiragi17&count_private=true&theme=tokyonight&show_icons=true" />
+  <img alt="Top Langs" height="150px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=hiiragi17&layout=compact&show_icons=true&theme=tokyonight&langs_count=8" />
+  <img alt="github stats" height="150px" src="https://github-readme-stats.vercel.app/api?username=hiiragi17&count_private=true&theme=tokyonight&show_icons=true&rank_icon=github&show=reviews,prs_merged,prs_merged_percentage" />
 </div>
 
 ## 🏆 **GitHub Trophies**
-[![trophy](https://github-profile-trophy.vercel.app/?username=hiiragi17&theme=tokyonight&column=7)](https://github.com/ryo-ma/github-profile-trophy)
+[![trophy](https://github-trophies.vercel.app/?username=hiiragi17&theme=tokyonight&column=7&no-bg=true&margin-w=10)](https://github.com/lucthienphong1120/github-trophies)
 
 ## その他記事
 ### Qitta
