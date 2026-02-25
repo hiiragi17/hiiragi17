@@ -25,10 +25,10 @@
 ### 👋 **Hi, I'm hiiragi17!**
 🚀 **Backend Developer** passionate about backend development
 
-🌍 **Location:** Japan 🇯🇵  
-💼 **Focus:** Building scalable backend applications  
-☕ **Powered by:** Matcha sweets and music  
-🎯 **Goal:** Creating efficient and clean code  
+🌍 **Location:** Japan 🇯🇵
+💼 **Focus:** Building scalable backend applications
+☕ **Powered by:** Matcha sweets and music
+🎯 **Goal:** Creating efficient and clean code
 
 </td>
 </tr>
@@ -56,20 +56,19 @@ https://remote-diagnosis-app.vercel.app/
 ## 📊 **GitHub Analytics**
 
 <div align="center">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=hiiragi17&theme=transparent&border_radius=10&starting_year=2020" alt="readme streak stats" />
+  <img src="https://streak-stats.demolab.com?user=hiiragi17&theme=transparent&border_radius=10&starting_year=2020" alt="readme streak stats" />
 </div>
 <div align="center">
   <img src="https://github-readme-activity-graph.vercel.app/graph?username=hiiragi17&custom_title=hiiragi17's%20GitHub%20Activity%20Graph&bg_color=0d1117&color=58a6ff&line=58a6ff&point=58a6ff&area=true&hide_border=true" />
 </div>
 
-![](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=hiiragi17&theme=vue)
-
-<img alt="Top Langs" height="150px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=hiiragi17&layout=compact&show_icons=true&theme=tokyonight" />
-<img alt="github stats" height="150px" src="https://github-readme-stats.vercel.app/api?username=hiiragi17&count_private=true&theme=tokyonight&show_icons=ture" />
+<div align="center">
+  <img alt="Top Langs" height="150px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=hiiragi17&layout=compact&show_icons=true&theme=tokyonight" />
+  <img alt="github stats" height="150px" src="https://github-readme-stats.vercel.app/api?username=hiiragi17&count_private=true&theme=tokyonight&show_icons=true" />
+</div>
 
 ## 🏆 **GitHub Trophies**
-[![trophy](https://github-profile-trophy.vercel.app/?username=hiiragi17&theme=tokyonight&column=7
-)](https://github.com/ryo-ma/github-profile-trophy)
+[![trophy](https://github-profile-trophy.vercel.app/?username=hiiragi17&theme=tokyonight&column=7)](https://github.com/ryo-ma/github-profile-trophy)
 
 ## その他記事
 ### Qitta
@@ -95,6 +94,6 @@ https://note.com/hiiragi_en17/
 </div>
 <div align="center">
   <img src="https://user-images.githubusercontent.com/74038190/212284115-f47cd8ff-2ffb-4b04-b5bf-4d1c14c0247f.gif" width="1000">
-⭐ From hiiragi17 with ❤️  <br> 
+⭐ From hiiragi17 with ❤️  <br>
 "Ruby makes everything possible! 💎"
 </div>
