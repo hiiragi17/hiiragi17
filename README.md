@@ -7,7 +7,7 @@
 </div>
 
 <div align="center">
-  <img src="https://readme-typing-svg.herokuapp.com?font=Fira+Code&size=32&duration=2800&pause=2000&color=A9FEF7&center=true&vCenter=true&width=600&lines=Hey+there!+I'm+hiiragi17+%F0%9F%91%8B;Ruby+Developer+%F0%9F%9A%80;Backend+Engineer+%E2%9C%A8;Always+Learning+New+Things+%F0%9F%93%9A" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=32&duration=2800&pause=2000&color=A9FEF7&center=true&vCenter=true&width=600&lines=Hey+there!+I'm+hiiragi17+%F0%9F%91%8B;Ruby+Developer+%F0%9F%9A%80;Backend+Engineer+%E2%9C%A8;Always+Learning+New+Things+%F0%9F%93%9A" alt="Typing SVG" />
 </div>
 
 ## 🌟 **About Me**
@@ -63,12 +63,12 @@ https://remote-diagnosis-app.vercel.app/
 </div>
 
 <div align="center">
-  <img alt="Top Langs" height="150px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=hiiragi17&layout=compact&show_icons=true&theme=tokyonight" />
-  <img alt="github stats" height="150px" src="https://github-readme-stats.vercel.app/api?username=hiiragi17&count_private=true&theme=tokyonight&show_icons=true" />
+  <img alt="Top Langs" height="150px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=hiiragi17&layout=compact&show_icons=true&theme=tokyonight&langs_count=8" />
+  <img alt="github stats" height="150px" src="https://github-readme-stats.vercel.app/api?username=hiiragi17&count_private=true&theme=tokyonight&show_icons=true&rank_icon=github&show=reviews,prs_merged,prs_merged_percentage" />
 </div>
 
 ## 🏆 **GitHub Trophies**
-[![trophy](https://github-profile-trophy.vercel.app/?username=hiiragi17&theme=tokyonight&column=7)](https://github.com/ryo-ma/github-profile-trophy)
+[![trophy](https://github-trophies.vercel.app/?username=hiiragi17&theme=tokyonight&column=7&no-bg=true&margin-w=10)](https://github.com/lucthienphong1120/github-trophies)
 
 ## その他記事
 ### Qitta
