@@ -63,12 +63,20 @@ https://remote-diagnosis-app.vercel.app/
 </div>
 
 <div align="center">
-  <img alt="Top Langs" height="150px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=hiiragi17&layout=compact&show_icons=true&theme=tokyonight&langs_count=8" />
-  <img alt="github stats" height="150px" src="https://github-readme-stats.vercel.app/api?username=hiiragi17&count_private=true&theme=tokyonight&show_icons=true&rank_icon=github&show=reviews,prs_merged,prs_merged_percentage" />
+  <img alt="Top Langs" height="200px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=hiiragi17&layout=donut&show_icons=true&theme=tokyonight&langs_count=8&size_weight=0.5&count_weight=0.5" />
+  <img alt="github stats" height="200px" src="https://github-readme-stats.vercel.app/api?username=hiiragi17&count_private=true&theme=tokyonight&show_icons=true&rank_icon=github&show=reviews,prs_merged,prs_merged_percentage" />
+</div>
+
+<div align="center">
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=hiiragi17&theme=tokyonight" />
+</div>
+<div align="center">
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=hiiragi17&theme=tokyonight" />
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=hiiragi17&theme=tokyonight" />
 </div>
 
 ## 🏆 **GitHub Trophies**
-[![trophy](https://github-trophies.vercel.app/?username=hiiragi17&theme=tokyonight&column=7&no-bg=true&margin-w=10)](https://github.com/lucthienphong1120/github-trophies)
+[![trophy](https://github-profile-trophy.vercel.app/?username=hiiragi17&theme=tokyonight&column=7&no-bg=true&no-frame=true&margin-w=10)](https://github.com/ryo-ma/github-profile-trophy)
 
 ## その他記事
 ### Qitta
