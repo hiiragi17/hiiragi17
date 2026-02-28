@@ -63,7 +63,6 @@ https://remote-diagnosis-app.vercel.app/
 </div>
 
 <div align="center">
-  <img alt="Top Langs" height="150px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=hiiragi17&layout=compact&show_icons=true&theme=tokyonight&langs_count=8" />
   <img alt="github stats" height="150px" src="https://github-readme-stats.vercel.app/api?username=hiiragi17&count_private=true&theme=tokyonight&show_icons=true&rank_icon=github&show=reviews,prs_merged,prs_merged_percentage" />
 </div>
 
