@@ -47,7 +47,7 @@ https://reflecthub.vercel.app/
 
 ### 抹茶と神社。(京都の抹茶スイーツ店と神社仏閣を巡ることができるサービス)
 
-[https://greentea-temple.herokuapp.com/](https://greentea-temple.herokuapp.com/)
+※現在閉鎖中
 
 ### ○○なので、リモートします。(荒唐無稽なリモート理由を診断してくれるサービス)
 
