@@ -56,10 +56,10 @@ https://remote-diagnosis-app.vercel.app/
 ## 📊 **GitHub Analytics**
 
 <div align="center">
-  <img src="https://streak-stats.demolab.com?user=hiiragi17&theme=transparent&border_radius=10&starting_year=2020&cache_bust=20261002" alt="readme streak stats" />
+  <img src="https://raw.githubusercontent.com/hiiragi17/hiiragi17/main/assets/streak-jst.svg" alt="JST streak stats" />
 </div>
 <div align="center">
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=hiiragi17&custom_title=hiiragi17's%20GitHub%20Activity%20Graph&bg_color=0d1117&color=58a6ff&line=58a6ff&point=58a6ff&area=true&hide_border=true&cache_bust=20261002" />
+  <img src="https://raw.githubusercontent.com/hiiragi17/hiiragi17/main/assets/activity-graph-jst.svg" alt="JST activity graph" />
 </div>
 
 ## 🏆 **GitHub Trophies**
