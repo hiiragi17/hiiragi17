@@ -96,3 +96,33 @@ const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="495" height="150" vi
 mkdirSync("assets", { recursive: true });
 writeFileSync("assets/streak-jst.svg", svg);
 console.log({ total, cur, longest, today });
+
+// 直近 30 日（JST）のアクティビティグラフ
+{
+  const N = 30, W = 495, H = 195, L = 36, R = 15, T = 40, B = 30;
+  const series = [];
+  for (let d = today, i = 0; i < N; d = prev(d), i++) series.unshift([d, days.get(d) ?? 0]);
+  const max = Math.max(5, ...series.map(([, v]) => v));
+  const x = (i) => L + ((W - L - R) * i) / (N - 1);
+  const y = (v) => T + (H - T - B) * (1 - v / max);
+  const pts = series.map(([, v], i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`);
+  const area = `${x(0)},${y(0)} ${pts.join(" ")} ${x(N - 1)},${y(0)}`;
+  const grid = [0, 0.5, 1].map((r) => {
+    const v = Math.round(max * r);
+    return `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="#21262d"/><text class="t" x="${L - 6}" y="${y(v) + 4}" text-anchor="end">${v}</text>`;
+  }).join("");
+  const ticks = [0, 7, 14, 21, 29].map((i) =>
+    `<text class="t" x="${x(i)}" y="${H - 10}" text-anchor="middle">${series[i][0].slice(5)}</text>`).join("");
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" role="img" aria-label="Activity graph (JST)">
+  <style>text{font-family:'Segoe UI',Ubuntu,sans-serif}.t{font-size:10px;fill:#8b949e}.h{font-size:14px;fill:#58a6ff;font-weight:600}</style>
+  <rect x="0.5" y="0.5" width="${W - 1}" height="${H - 1}" rx="10" fill="#0d1117" stroke="#30363d"/>
+  <text class="h" x="${W / 2}" y="26" text-anchor="middle">${user}'s GitHub Activity (last 30 days, JST)</text>
+  ${grid}
+  <polygon points="${area}" fill="#58a6ff" fill-opacity="0.2"/>
+  <polyline points="${pts.join(" ")}" fill="none" stroke="#58a6ff" stroke-width="2"/>
+  ${series.map(([, v], i) => `<circle cx="${x(i).toFixed(1)}" cy="${y(v).toFixed(1)}" r="2.5" fill="#58a6ff"/>`).join("")}
+  ${ticks}
+</svg>
+`;
+  writeFileSync("assets/activity-graph-jst.svg", svg);
+}
