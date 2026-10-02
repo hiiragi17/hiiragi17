@@ -68,7 +68,7 @@ const now = new Date();
 const WINDOW = 14 * 86400000;
 for (let i = 0; i < 27; i++) {
   const to = new Date(now.getTime() - i * WINDOW);
-  const from = new Date(to.getTime() - WINDOW);
+  const from = new Date(Math.max(to.getTime() - WINDOW, now.getTime() - 365 * 86400000)); // 最古の窓は 1 年前で打ち切る
   const range = { login: user, from: from.toISOString(), to: to.toISOString() };
 
   const { user: u } = await gql(commitQuery, range);
