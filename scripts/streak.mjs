@@ -7,21 +7,31 @@ const token = process.env.GH_TOKEN;
 const OFFSET = 9 * 3600 * 1000;
 const jstDay = (iso) => new Date(new Date(iso).getTime() + OFFSET).toISOString().slice(0, 10);
 
-const query = `
+const commitQuery = `
 query($login: String!, $from: DateTime!, $to: DateTime!) {
   user(login: $login) {
     contributionsCollection(from: $from, to: $to) {
       commitContributionsByRepository(maxRepositories: 100) {
-        contributions(first: 100) { nodes { occurredAt } }
+        contributions(first: 100) { nodes { occurredAt commitCount } }
       }
-      pullRequestContributions(first: 100) { nodes { occurredAt } }
-      pullRequestReviewContributions(first: 100) { nodes { occurredAt } }
-      issueContributions(first: 100) { nodes { occurredAt } }
     }
   }
 }`;
 
-async function gql(variables) {
+// PR / レビュー / Issue は 100 件を超えうるのでカーソルでページングする
+const pagedQuery = (field) => `
+query($login: String!, $from: DateTime!, $to: DateTime!, $after: String) {
+  user(login: $login) {
+    contributionsCollection(from: $from, to: $to) {
+      ${field}(first: 100, after: $after) {
+        pageInfo { hasNextPage endCursor }
+        nodes { occurredAt }
+      }
+    }
+  }
+}`;
+
+async function gql(query, variables) {
   const res = await fetch("https://api.github.com/graphql", {
     method: "POST",
     headers: { Authorization: `bearer ${token}`, "Content-Type": "application/json" },
@@ -33,17 +43,27 @@ async function gql(variables) {
 }
 
 const days = new Map();
-const add = (iso) => days.set(jstDay(iso), (days.get(jstDay(iso)) ?? 0) + 1);
+const add = (iso, n = 1) => days.set(jstDay(iso), (days.get(jstDay(iso)) ?? 0) + n);
 
-// 直近 1 年を 3 か月ごとに取得（各リストの 100 件上限を避けるため）
+// 直近 1 年を 3 か月ごとに取得
 const now = new Date();
 for (let i = 0; i < 4; i++) {
   const to = new Date(now.getTime() - i * 91 * 86400000);
   const from = new Date(to.getTime() - 91 * 86400000);
-  const c = await gql({ login: user, from: from.toISOString(), to: to.toISOString() });
-  for (const r of c.commitContributionsByRepository) r.contributions.nodes.forEach((n) => add(n.occurredAt));
-  for (const k of ["pullRequestContributions", "pullRequestReviewContributions", "issueContributions"])
-    c[k].nodes.forEach((n) => add(n.occurredAt));
+  const range = { login: user, from: from.toISOString(), to: to.toISOString() };
+
+  const c = await gql(commitQuery, range);
+  for (const r of c.commitContributionsByRepository)
+    r.contributions.nodes.forEach((n) => add(n.occurredAt, n.commitCount));
+
+  for (const field of ["pullRequestContributions", "pullRequestReviewContributions", "issueContributions"]) {
+    let after = null;
+    do {
+      const conn = (await gql(pagedQuery(field), { ...range, after }))[field];
+      conn.nodes.forEach((n) => add(n.occurredAt));
+      after = conn.pageInfo.hasNextPage ? conn.pageInfo.endCursor : null;
+    } while (after);
+  }
 }
 
 const today = jstDay(now.toISOString());
