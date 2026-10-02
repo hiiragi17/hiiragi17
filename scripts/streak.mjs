@@ -10,9 +10,27 @@ const jstDay = (iso) => new Date(new Date(iso).getTime() + OFFSET).toISOString()
 const commitQuery = `
 query($login: String!, $from: DateTime!, $to: DateTime!) {
   user(login: $login) {
+    id
     contributionsCollection(from: $from, to: $to) {
       commitContributionsByRepository(maxRepositories: 100) {
-        contributions(first: 100) { nodes { occurredAt commitCount } }
+        repository { name owner { login } }
+      }
+    }
+  }
+}`;
+
+// 集計ノードは UTC 日単位なので、JST で数えるためコミット個別の時刻を取得する
+const historyQuery = `
+query($owner: String!, $name: String!, $since: GitTimestamp!, $until: GitTimestamp!, $author: ID!, $after: String) {
+  repository(owner: $owner, name: $name) {
+    defaultBranchRef {
+      target {
+        ... on Commit {
+          history(first: 100, since: $since, until: $until, author: { id: $author }, after: $after) {
+            pageInfo { hasNextPage endCursor }
+            nodes { committedDate }
+          }
+        }
       }
     }
   }
@@ -39,27 +57,39 @@ async function gql(query, variables) {
   });
   const json = await res.json();
   if (!res.ok || json.errors) throw new Error(JSON.stringify(json.errors ?? res.status));
-  return json.data.user.contributionsCollection;
+  return json.data;
 }
 
 const days = new Map();
 const add = (iso, n = 1) => days.set(jstDay(iso), (days.get(jstDay(iso)) ?? 0) + n);
 
-// 直近 1 年を 3 か月ごとに取得
+// 直近 1 年を 2 週間ごとに取得（リポジトリ数の 100 件上限を避けるため窓を細かくする）
 const now = new Date();
-for (let i = 0; i < 4; i++) {
-  const to = new Date(now.getTime() - i * 91 * 86400000);
-  const from = new Date(to.getTime() - 91 * 86400000);
+const WINDOW = 14 * 86400000;
+for (let i = 0; i < 27; i++) {
+  const to = new Date(now.getTime() - i * WINDOW);
+  const from = new Date(to.getTime() - WINDOW);
   const range = { login: user, from: from.toISOString(), to: to.toISOString() };
 
-  const c = await gql(commitQuery, range);
-  for (const r of c.commitContributionsByRepository)
-    r.contributions.nodes.forEach((n) => add(n.occurredAt, n.commitCount));
+  const { user: u } = await gql(commitQuery, range);
+  for (const { repository } of u.contributionsCollection.commitContributionsByRepository) {
+    let after = null;
+    do {
+      const data = await gql(historyQuery, {
+        owner: repository.owner.login, name: repository.name,
+        since: range.from, until: range.to, author: u.id, after,
+      });
+      const h = data.repository?.defaultBranchRef?.target?.history;
+      if (!h) break;
+      h.nodes.forEach((n) => add(n.committedDate));
+      after = h.pageInfo.hasNextPage ? h.pageInfo.endCursor : null;
+    } while (after);
+  }
 
   for (const field of ["pullRequestContributions", "pullRequestReviewContributions", "issueContributions"]) {
     let after = null;
     do {
-      const conn = (await gql(pagedQuery(field), { ...range, after }))[field];
+      const conn = (await gql(pagedQuery(field), { ...range, after })).user.contributionsCollection[field];
       conn.nodes.forEach((n) => add(n.occurredAt));
       after = conn.pageInfo.hasNextPage ? conn.pageInfo.endCursor : null;
     } while (after);
