@@ -20,21 +20,23 @@ query($login: String!, $from: DateTime!, $to: DateTime!) {
 }`;
 
 // 集計ノードは UTC 日単位なので、JST で数えるためコミット個別の時刻を取得する
-const historyQuery = `
+const historyQuery = (branch) => `
 query($owner: String!, $name: String!, $since: GitTimestamp!, $until: GitTimestamp!, $author: ID!, $after: String) {
   repository(owner: $owner, name: $name) {
-    defaultBranchRef {
+    ref: ${branch} {
       target {
         ... on Commit {
           history(first: 100, since: $since, until: $until, author: { id: $author }, after: $after) {
             pageInfo { hasNextPage endCursor }
-            nodes { committedDate }
+            nodes { oid committedDate }
           }
         }
       }
     }
   }
 }`;
+// GitHub がコントリビューションとして数えるのはデフォルトブランチと gh-pages
+const branchQueries = [historyQuery("defaultBranchRef"), historyQuery('ref(qualifiedName: "refs/heads/gh-pages")')];
 
 // PR / レビュー / Issue は 100 件を超えうるのでカーソルでページングする
 const pagedQuery = (field) => `
@@ -61,6 +63,7 @@ async function gql(query, variables) {
 }
 
 const days = new Map();
+const seen = new Set();
 const add = (iso, n = 1) => days.set(jstDay(iso), (days.get(jstDay(iso)) ?? 0) + n);
 
 // 直近 1 年を 2 週間ごとに取得（リポジトリ数の 100 件上限を避けるため窓を細かくする）
@@ -73,20 +76,22 @@ for (let i = 0; i < 27; i++) {
 
   const { user: u } = await gql(commitQuery, range);
   for (const { repository } of u.contributionsCollection.commitContributionsByRepository) {
-    let after = null;
-    do {
-      const data = await gql(historyQuery, {
-        owner: repository.owner.login, name: repository.name,
-        since: range.from, until: range.to, author: u.id, after,
-      });
-      const h = data.repository?.defaultBranchRef?.target?.history;
-      if (!h) break;
-      h.nodes.forEach((n) => add(n.committedDate));
-      after = h.pageInfo.hasNextPage ? h.pageInfo.endCursor : null;
-    } while (after);
+    for (const q of branchQueries) {
+      let after = null;
+      do {
+        const data = await gql(q, {
+          owner: repository.owner.login, name: repository.name,
+          since: range.from, until: range.to, author: u.id, after,
+        });
+        const h = data.repository?.ref?.target?.history;
+        if (!h) break;
+        h.nodes.forEach((n) => { if (!seen.has(n.oid)) { seen.add(n.oid); add(n.committedDate); } }); // gh-pages がデフォルトの場合の二重計上を防ぐ
+        after = h.pageInfo.hasNextPage ? h.pageInfo.endCursor : null;
+      } while (after);
+    }
   }
 
-  for (const field of ["pullRequestContributions", "pullRequestReviewContributions", "issueContributions"]) {
+  for (const field of ["pullRequestContributions", "pullRequestReviewContributions", "issueContributions", "repositoryContributions", "repositoryDiscussionContributions"]) {
     let after = null;
     do {
       const conn = (await gql(pagedQuery(field), { ...range, after })).user.contributionsCollection[field];
