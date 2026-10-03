@@ -91,7 +91,7 @@ for (let i = 0; i < 27; i++) {
     }
   }
 
-  for (const field of ["pullRequestContributions", "pullRequestReviewContributions", "issueContributions", "repositoryContributions", "repositoryDiscussionContributions"]) {
+  for (const field of ["pullRequestContributions", "pullRequestReviewContributions", "issueContributions", "repositoryContributions"]) {
     let after = null;
     do {
       const conn = (await gql(pagedQuery(field), { ...range, after })).user.contributionsCollection[field];
